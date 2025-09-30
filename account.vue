@@ -17,7 +17,7 @@
             <div class="profile-picture-section">
               <div class="profile-picture">
                 <img 
-                  :src="profileImageUrl || '../assets/default-avatar.png'" 
+                  :src="profileImageUrl || '../assets/profile.jpg'" 
                   alt="Profile Picture" 
                   class="avatar"
                 />
@@ -456,9 +456,11 @@ const removeAccount = (accountId) => {
 
 <style scoped>
 .account-page {
-  padding: 0.75rem 2rem; /* Increased left and right padding */
-  margin-top: 2rem;
-  margin-left: calc(3.5rem + 32px); /* Fixed left margin for closed sidebar */
+  padding: 2rem;
+  margin-top: 0.5rem;
+  margin-left: 0;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .account-layout {
@@ -466,6 +468,8 @@ const removeAccount = (accountId) => {
   grid-template-columns: 1fr 1fr;
   gap: 2rem;
   align-items: start;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 /* Profile Container - Left Side */
@@ -480,6 +484,9 @@ const removeAccount = (accountId) => {
   padding: 1.5rem;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   position: relative;
+  width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
 }
 
 /* Profile Header */
@@ -490,6 +497,7 @@ const removeAccount = (accountId) => {
   margin-bottom: 1.5rem;
   padding-bottom: 0.75rem;
   border-bottom: 2px solid var(--grey);
+  width: 100%;
 }
 
 .profile-title {
@@ -511,6 +519,7 @@ const removeAccount = (accountId) => {
   justify-content: center;
   cursor: pointer;
   transition: all 0.3s ease;
+  flex-shrink: 0;
 }
 
 .edit-button:hover {
@@ -527,6 +536,7 @@ const removeAccount = (accountId) => {
   display: flex;
   gap: 1.5rem;
   align-items: flex-start;
+  width: 100%;
 }
 
 .profile-picture-section {
@@ -535,6 +545,7 @@ const removeAccount = (accountId) => {
   align-items: center;
   gap: 0.75rem;
   flex-shrink: 0;
+  min-width: 120px;
 }
 
 .profile-picture {
@@ -585,11 +596,13 @@ const removeAccount = (accountId) => {
   color: var(--dark);
   margin: 0;
   text-align: center;
+  word-break: break-word;
+  max-width: 120px;
 }
 
 .full-name-edit {
   width: 100%;
-  max-width: 200px;
+  max-width: 120px;
 }
 
 .profile-info {
@@ -597,12 +610,14 @@ const removeAccount = (accountId) => {
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
+  min-width: 0; /* Prevents flex item from overflowing */
 }
 
 .info-section {
   display: flex;
   flex-direction: column;
   gap: 0.4rem;
+  width: 100%;
 }
 
 .info-label {
@@ -611,6 +626,7 @@ const removeAccount = (accountId) => {
   font-size: 0.85rem;
   text-transform: uppercase;
   letter-spacing: 0.5px;
+  width: 100%;
 }
 
 .info-value {
@@ -618,11 +634,15 @@ const removeAccount = (accountId) => {
   font-size: 0.95rem;
   margin: 0;
   padding-left: 0.5rem;
+  word-break: break-word;
+  width: 100%;
 }
 
 /* Edit Input Styles */
 .edit-input-container {
   padding-left: 0.5rem;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .edit-input {
@@ -633,6 +653,8 @@ const removeAccount = (accountId) => {
   font-size: 0.95rem;
   outline: none;
   transition: border-color 0.3s ease;
+  box-sizing: border-box;
+  max-width: 100%;
 }
 
 .edit-input:focus {
@@ -650,12 +672,14 @@ const removeAccount = (accountId) => {
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
+  width: 100%;
 }
 
 .id-upload-section {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+  width: 100%;
 }
 
 .upload-label {
@@ -670,6 +694,8 @@ const removeAccount = (accountId) => {
   transition: all 0.3s ease;
   font-size: 0.85rem;
   color: var(--dark);
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .upload-label:hover {
@@ -691,6 +717,8 @@ const removeAccount = (accountId) => {
   border-radius: 4px;
   font-size: 0.8rem;
   color: var(--dark);
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .file-preview {
@@ -698,6 +726,7 @@ const removeAccount = (accountId) => {
   align-items: center;
   gap: 0.5rem;
   flex: 1;
+  min-width: 0;
 }
 
 .id-preview-image {
@@ -706,12 +735,19 @@ const removeAccount = (accountId) => {
   object-fit: cover;
   border-radius: 4px;
   border: 1px solid var(--grey);
+  flex-shrink: 0;
 }
 
 .file-info {
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  min-width: 0;
+  flex: 1;
+}
+
+.file-info span {
+  flex-shrink: 0;
 }
 
 .uploaded-file .material-icons {
@@ -727,6 +763,7 @@ const removeAccount = (accountId) => {
   padding: 0.2rem;
   border-radius: 50%;
   transition: all 0.3s ease;
+  flex-shrink: 0;
 }
 
 .remove-file-btn:hover {
@@ -737,12 +774,14 @@ const removeAccount = (accountId) => {
 /* ID Display Section */
 .id-display {
   padding-left: 0.5rem;
+  width: 100%;
 }
 
 .uploaded-id {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+  width: 100%;
 }
 
 .id-image {
@@ -752,6 +791,7 @@ const removeAccount = (accountId) => {
   border-radius: 6px;
   border: 2px solid var(--grey);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  max-width: 100%;
 }
 
 .id-verified {
@@ -768,6 +808,8 @@ const removeAccount = (accountId) => {
   margin-top: 1.5rem;
   padding-top: 1rem;
   border-top: 1px solid var(--grey);
+  width: 100%;
+  flex-wrap: wrap;
 }
 
 .save-btn-large, .cancel-btn-large {
@@ -781,6 +823,10 @@ const removeAccount = (accountId) => {
   font-weight: 600;
   transition: all 0.3s ease;
   font-size: 0.9rem;
+  flex: 1;
+  min-width: 140px;
+  justify-content: center;
+  box-sizing: border-box;
 }
 
 .save-btn-large {
@@ -807,11 +853,15 @@ const removeAccount = (accountId) => {
   justify-content: space-between;
   align-items: center;
   margin-bottom: 0.4rem;
+  width: 100%;
+  flex-wrap: wrap;
+  gap: 0.5rem;
 }
 
 .account-options {
   display: flex;
   gap: 0.5rem;
+  flex-shrink: 0;
 }
 
 .add-account-btn {
@@ -826,6 +876,7 @@ const removeAccount = (accountId) => {
   cursor: pointer;
   font-size: 0.75rem;
   transition: background 0.3s ease;
+  white-space: nowrap;
 }
 
 .add-account-btn:hover {
@@ -835,10 +886,12 @@ const removeAccount = (accountId) => {
 /* Add Account Field */
 .add-account-field {
   margin: 0.5rem 0;
+  width: 100%;
 }
 
 .account-type-selector {
   margin-bottom: 0.5rem;
+  width: 100%;
 }
 
 .account-select {
@@ -848,6 +901,9 @@ const removeAccount = (accountId) => {
   font-size: 0.85rem;
   outline: none;
   transition: border-color 0.3s ease;
+  width: 100%;
+  box-sizing: border-box;
+  max-width: 100%;
 }
 
 .account-select:focus {
@@ -858,6 +914,8 @@ const removeAccount = (accountId) => {
   display: flex;
   gap: 0.5rem;
   align-items: center;
+  width: 100%;
+  flex-wrap: wrap;
 }
 
 .url-input {
@@ -868,6 +926,8 @@ const removeAccount = (accountId) => {
   font-size: 0.85rem;
   outline: none;
   transition: border-color 0.3s ease;
+  min-width: 200px;
+  box-sizing: border-box;
 }
 
 .url-input:focus {
@@ -884,6 +944,7 @@ const removeAccount = (accountId) => {
   border-radius: 4px;
   cursor: pointer;
   transition: all 0.3s ease;
+  flex-shrink: 0;
 }
 
 .save-btn {
@@ -914,12 +975,14 @@ const removeAccount = (accountId) => {
   font-size: 0.75rem;
   margin-top: 0.25rem;
   padding-left: 0.25rem;
+  width: 100%;
 }
 
 .linked-accounts {
   display: flex;
   flex-direction: column;
   gap: 0.4rem;
+  width: 100%;
 }
 
 .account-item {
@@ -930,17 +993,22 @@ const removeAccount = (accountId) => {
   background: var(--light);
   border-radius: 4px;
   font-size: 0.85rem;
+  width: 100%;
+  box-sizing: border-box;
+  flex-wrap: wrap;
 }
 
 .account-icon {
   font-size: 0.9rem;
   color: var(--primary);
+  flex-shrink: 0;
 }
 
 .account-name {
   font-weight: 600;
   color: var(--dark);
   min-width: 70px;
+  flex-shrink: 0;
 }
 
 .account-url {
@@ -950,6 +1018,7 @@ const removeAccount = (accountId) => {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  min-width: 0;
 }
 
 .remove-account-btn {
@@ -961,6 +1030,7 @@ const removeAccount = (accountId) => {
   border-radius: 50%;
   font-size: 0.8rem;
   transition: all 0.3s ease;
+  flex-shrink: 0;
 }
 
 .remove-account-btn:hover {
@@ -974,6 +1044,7 @@ const removeAccount = (accountId) => {
   text-align: center;
   padding: 0.75rem;
   font-size: 0.85rem;
+  width: 100%;
 }
 
 /* Posts Container - Right Side */
@@ -987,6 +1058,8 @@ const removeAccount = (accountId) => {
   border-radius: 10px;
   padding: 1.25rem;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .section-title {
@@ -995,6 +1068,7 @@ const removeAccount = (accountId) => {
   margin-bottom: 0.75rem;
   padding-bottom: 0.5rem;
   border-bottom: 2px solid var(--grey);
+  width: 100%;
 }
 
 /* Posts */
@@ -1002,6 +1076,7 @@ const removeAccount = (accountId) => {
   display: flex;
   gap: 0.4rem;
   margin-bottom: 0.75rem;
+  width: 100%;
 }
 
 .tab-btn {
@@ -1015,6 +1090,7 @@ const removeAccount = (accountId) => {
   font-weight: 600;
   color: var(--dark);
   font-size: 0.85rem;
+  box-sizing: border-box;
 }
 
 .tab-btn.active {
@@ -1024,12 +1100,14 @@ const removeAccount = (accountId) => {
 
 .posts-content {
   min-height: 150px;
+  width: 100%;
 }
 
 .posts-list {
   display: flex;
   flex-direction: column;
   gap: 0.6rem;
+  width: 100%;
 }
 
 .post-item {
@@ -1039,19 +1117,21 @@ const removeAccount = (accountId) => {
   color: var(--dark);
   text-align: center;
   font-size: 0.9rem;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
   .account-page {
-    padding: 0.5rem 1rem; /* Adjusted for mobile */
+    padding: 1rem;
     margin-top: 1.5rem;
-    margin-left: 0.5rem;
   }
   
   .account-layout {
     grid-template-columns: 1fr;
     gap: 1.5rem;
+    padding: 0;
   }
   
   .profile-content {
@@ -1074,10 +1154,16 @@ const removeAccount = (accountId) => {
   
   .url-input {
     width: 100%;
+    min-width: auto;
   }
   
   .edit-actions {
     flex-direction: column;
+  }
+  
+  .save-btn-large, .cancel-btn-large {
+    min-width: auto;
+    width: 100%;
   }
   
   .posts-tabs {
@@ -1099,13 +1185,23 @@ const removeAccount = (accountId) => {
     width: 100%;
     justify-content: flex-end;
   }
+  
+  .account-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
+  }
+  
+  .account-url {
+    width: 100%;
+    order: 3;
+  }
 }
 
 @media (max-width: 480px) {
   .account-page {
-    padding: 0.25rem 0.5rem; /* Adjusted for mobile */
+    padding: 0.5rem;
     margin-top: 1rem;
-    margin-left: 0.25rem;
   }
   
   .avatar {
@@ -1133,6 +1229,14 @@ const removeAccount = (accountId) => {
   .account-url {
     min-width: 100%;
     order: 3;
+  }
+  
+  .profile-content {
+    gap: 1rem;
+  }
+  
+  .profile-info {
+    gap: 1rem;
   }
 }
 </style>
